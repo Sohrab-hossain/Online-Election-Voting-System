@@ -1,0 +1,130 @@
+create table division
+(
+   id int auto_increment primary key,
+    name varchar(200)
+)
+
+create table district
+(
+    id int auto_increment primary key,
+    name varchar (200),
+    divisionId int,
+    foreign key (divisionId) references division(id)
+)
+create table subDistrict
+(
+    id int auto_increment primary key,
+    name varchar (200),
+    districtId int,
+    foreign key (districtId) references district(id)
+)
+
+create table union_council
+(
+    id int auto_increment primary key,
+    name varchar (200),
+    subDistrictId int,
+    foreign key (subDistrictId) references subDistrict(id)
+)
+
+
+create table voter
+(
+    id int auto_increment primary key,
+    name varchar (200),
+    fatherName varchar (200),
+    motherName varchar (200),
+    nidNumber varchar (50) unique,
+    dateOfBirth date,
+    gender int,
+    presentDivisionId int,
+    presentDistrictId int,
+    presentSubDistrictId int,
+    presentExtraAddress varchar (300),
+    permanentDivisionId int,
+    permanentDistrictId int,
+    permanentSubDistrictId int,
+    permanentExtraAddress varchar (300),
+    contact varchar (50) unique,
+    email varchar (50) unique,
+    password varchar (500),
+    fingerprint varchar (500),  
+    createDate date,
+    createIp varchar (200),
+    foreign key (presentDivisionId) references division(id),
+    foreign key (presentDistrictId) references district(id),
+    foreign key (presentSubDistrictId) references subDistrict(id)
+)
+
+create table admin
+(
+    id int auto_increment primary key,
+    name varchar (200),
+    fatherName varchar (200),
+    motherName varchar (200),
+    nidNumber varchar (50) unique,
+    dateOfBirth date,
+    gender int,
+    presentDivisionId int,
+    presentDistrictId int,
+    presentSubDistrictId int,
+    presentExtraAddress varchar (300),
+    permanentDivisionId int,
+    permanentDistrictId int,
+    permanentSubDistrictId int,
+    permanentExtraAddress varchar (300),
+    workInstitute varchar (200),
+    workPosition varchar (200),
+    contact varchar (50) unique,
+    email varchar (50) unique,
+    password varchar (500),
+    fingerprint varchar (500),  
+    createDate date,
+    createIp varchar (200),
+    foreign key (presentDivisionId) references division(id),
+    foreign key (presentDistrictId) references district(id),
+    foreign key (presentSubDistrictId) references subDistrict(id)
+)
+
+create table candidate
+(
+    id int auto_increment primary key,
+    name varchar (200),
+    fatherName varchar (200),
+    motherName varchar (200),
+    nidNumber varchar (50) unique,
+    nidCopy varchar (500),
+    dateOfBirth date,
+    gender int,
+
+    presentDivisionId int,
+    presentDistrictId int,
+    presentSubDistrictId int,
+    presentExtraAddress varchar (300),
+    permanentDivisionId int,
+    permanentDistrictId int,
+    permanentSubDistrictId int,
+
+    permanentExtraAddress varchar (300),
+    contact varchar (50) unique,
+    email varchar (50) unique,
+    canPartySymbol varchar (500),
+    canDetailsPdf varchar (500),
+    createDate date,
+    createIp varchar (200),
+    foreign key (presentDivisionId) references division(id),
+    foreign key (presentDistrictId) references district(id),
+    foreign key (presentSubDistrictId) references subDistrict(id)
+)
+
+create table result
+(
+    candidateId int primary key,
+    totalVote int,
+    foreign key (candidateId) references candidate (id)
+)
+
+
+
+
+

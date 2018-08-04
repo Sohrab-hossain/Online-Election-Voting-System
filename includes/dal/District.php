@@ -55,7 +55,7 @@ class District extends Base
     public function Select()
     {
         $a = array();
-        $sql = "select dst.id, dst.name, dv.name as division from district as dst left join division as dv on dst.divisionId=dv.id" ;
+        $sql = "select dst.id, dst.name, dvn.name as division from district as dst left join division as dvn on dst.divisionId=dvn.id" ;
         $table = mysqli_query($this->CN,$sql);
 
         while($row = mysqli_fetch_assoc($table))
@@ -72,7 +72,7 @@ class District extends Base
         while($row = mysqli_fetch_assoc($table))
         {
             $this->Name = $row["name"];
-            $this->CountryId = $row["countryId"];
+            $this->DivisionId = $row["divisionId"];
             return true;
         }
         $this->Error = mysqli_error($this->CN);

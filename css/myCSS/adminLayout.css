@@ -1,3 +1,20 @@
+.myHeader
+{
+    height: 50px;
+    width: auto;
+    background-color: #2aabd2;
+}
+.myHeader ul li
+{
+    float: left;
+    margin: 10px;
+    padding: 5px;
+}
+.myHeader ul li a
+{
+    color: yellow;
+}
+
 .content
 {
     width: auto;

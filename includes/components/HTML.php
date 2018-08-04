@@ -79,7 +79,7 @@ class HTML
                 print "<th>".ucwords($k)."</th>";
             break;
         }
-        print '<th>#</th></tr>';
+        print '<th>Edit | Delete</th></tr>';
         foreach ($table as $row)
         {
             print '<tr>';

@@ -14,10 +14,6 @@ if(isset($_GET['view']))
 {
     $view= $_GET['view'];
 }
-function tryFunction()
-{
-    print "Hi, I am Zafran";
-}
 function createLink()
 {
     global $controller;
@@ -27,8 +23,8 @@ function createLink()
 function editDeleteLink($id)
 {
     global $controller;
-    $s = '<a href="?controller='.$controller.'&view=edit&id='.base64_encode($id).'"><i class="fas fa-user-edit"></i></a>';
-    $s .= ' | <a href="?controller='.$controller.'&view=index&id='.base64_encode($id).'"><i class="fas fa-trash"></i></a>';
+    $s = '<a href="?controller='.$controller.'&view=edit&id='.base64_encode($id).'" title="Edit"><i class="fas fa-user-edit"></i></a>';
+    $s .= ' | <a href="?controller='.$controller.'&view=index&id='.base64_encode($id).'" title="Delete"><i class="fas fa-trash"></i></a>';
 
     return $s;
 }

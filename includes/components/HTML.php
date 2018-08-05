@@ -18,10 +18,6 @@ class HTML
         print "<form method=\"post\" action=\"\" $attributes>\n";
     }
 
-    public function formEnd()
-    {
-        print "</form>\n";
-    }
     public function textField($name, $value, $error = "")
     {
         print "<div class=\"form-group\">\n";
@@ -31,20 +27,60 @@ class HTML
         print " </div>\n";
     }
 
-    public function submitField($name="submit", $value="Submit")
+    public function textArea($name, $value = "", $error = "")
     {
-        print "<input type=\"submit\" name=\"$name\" value=\"$value\"/>\n";
+        print "<div class=\"form-group\">\n
+		<label>".ucwords($name)."</label>\n
+		<textarea name=\"$name\" id=\"$name\" class=\"form-control\">".$value."</textarea>\n
+		<span class=\"error\" id=\"e$name\">$error</span>\n
+		</div>\n";
     }
 
-
-    public function successMessage($message)
+    public function dateField($name, $value, $error = "")
     {
-        print "<span class=\"alert-success\">$message</span>";
+        print "<div class=\"form-group\">\n
+		<label>".ucwords($name)."</label>\n
+		<input type=\"date\" name=\"$name\" id=\"$name\" class=\"form-control\" value=\"$value\"/>\n
+		<span class=\"error\" id=\"e$name\">$error</span>\n
+		</div>\n";
     }
 
-    public function errorMessage($message)
+    public function fileField($name, $error = "")
     {
-        print "<span class=\"alert-danger\">$message</span>";
+        print "<div class=\"form-group\">\n
+		<label>".ucwords($name)."</label>\n
+		<input type=\"file\" name=\"$name\" id=\"$name\" class=\"form-control\"/>\n
+		<span class=\"error\" id=\"e$name\">$error</span>\n
+		</div>\n";
+    }
+
+    public function radioField($name, $array, $value, $error = "")
+    {
+        print "<div class=\"form-group\">\n
+		<label>".ucwords($name)."</label><br />";
+
+        foreach($array as $v)
+        {
+            if($value == $v)
+            {
+                print "<input type=\"radio\" name=\"$name\" id=\"$name\" value=\"$v\" Checked />$v\n";
+            }
+            else{
+                print "<input type=\"radio\" name=\"$name\" id=\"$name\" value=\"$v\"/>$v\n";
+            }
+        }
+
+        print "<span class=\"error\" id=\"e$name\">$error</span>\n
+		</div>\n";
+    }
+
+    public function passwordField($name, $value, $error = "")
+    {
+        print "<div class=\"form-group\">\n
+		<label>".ucwords($name)."</label>\n
+		<input type=\"password\" name=\"$name\" id=\"$name\" class=\"form-control\" value=\"$value\"/>\n
+		<span class=\"error\" id=\"e$name\">$error</span>\n
+		</div>\n";
     }
 
     public function selectField($name, $table, $value = "0", $error = "")
@@ -92,6 +128,28 @@ class HTML
             print '</tr>';
         }
         print '</table>';
+    }
+
+    public function submitField($name="submit", $value="Submit")
+    {
+        print "<input type=\"submit\" name=\"$name\" value=\"$value\"/>\n";
+    }
+
+    public function formEnd()
+    {
+        print "</form>\n";
+    }
+
+
+
+    public function successMessage($message)
+    {
+        print "<span class=\"alert-success\">$message</span>";
+    }
+
+    public function errorMessage($message)
+    {
+        print "<span class=\"alert-danger\">$message</span>";
     }
 
 }

@@ -1,13 +1,13 @@
 <?php
 createLink();
-$cnd = new Candidate();
+$adm = new Admin();
 
 if(isset($_GET['id']))
 {
-    $cnd->Id = base64_decode($_GET['id']);
-    commonDelete($cnd);
+    $adm->Id = base64_decode($_GET['id']);
+    commonDelete($adm);
 }
 
-$cnd->Select();
+
 
 ?>

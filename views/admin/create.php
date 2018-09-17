@@ -1,11 +1,10 @@
 <?php
-$cnd = new Candidate();
+$adm = new Admin();
 
 $ename="";
 $efather_Name="";
 $emother_Name="";
 $enid_Number="";
-$enid_Copy="";
 $edate_Of_Birth="";
 $egender="";
 
@@ -13,150 +12,149 @@ $edivision="";
 $edistrict="";
 $esubDistrictd="";
 
-$ecandidate_Image="";
+$ework_Institute="";
+$ework_Position="";
+
+$eadmin_Image="";
 $ephone_Number="";
 $eemail="";
-$ecandidate_Party_Symbol="";
-$ecandidate_Details_Pdf="";
+$epassword="";
+$ere_Password="";
 
 if(isset($_POST['submit']))
 {
-    $cnd = loadUserData($cnd);
-    
-    $cnd->Nid_Copy = $_FILES['Nid_Copy'];
-    $cnd->Candidate_Image = $_FILES['Candidate_Image'];
-    $cnd->Candidate_Party_Symbol = $_FILES['Candidate_Party_Symbol'];
-    $cnd->Candidate_Details_Pdf = $_FILES['Candidate_Details_Pdf'];
+    $adm = loadUserData($adm);
+
+    $adm->Admin_Image = $_FILES['Admin_Image'];
 
     $er = "";
 
-    if($cnd->Name == "")
+    if($adm->Name == "")
     {
         $er++;
         $ename = "Required";
     }
-    if($cnd->Father_Name == "")
+    if($adm->Father_Name == "")
     {
         $er++;
         $efather_Name = "Required";
     }
-    if($cnd->Mother_Name == "")
+    if($adm->Mother_Name == "")
     {
         $er++;
         $emother_Name = "Required";
     }
-    if($cnd->Nid_Number == "")
+    if($adm->Nid_Number == "")
     {
         $er++;
         $enid_Number = "Required";
     }
-    if($cnd->Nid_Copy["name"] == "")
-    {
-        $er++;
-        $enid_Copy = "Required";
-    }
-    if($cnd->Date_Of_Birth == "")
+    if($adm->Date_Of_Birth == "")
     {
         $er++;
         $edate_Of_Birth = "Required";
     }
-    if($cnd->Gender == "")
+    if($adm->Gender == "")
     {
         $er++;
         $egender = "Required";
     }
 
-    if($cnd->Permanent_Division_Id == "0")
+    if($adm->Permanent_Division_Id == "0")
     {
         $er++;
         $edivision = "Select one";
     }
-    if($cnd->Permanent_District_Id == "0")
+    if($adm->Permanent_District_Id == "0")
     {
         $er++;
         $edistrict = "Select one";
     }
-    if($cnd->Permanent_SubDistrict_Id == "0")
+    if($adm->Permanent_SubDistrict_Id == "0")
     {
         $er++;
         $esubDistrictd = "Select one";
     }
 
-    if($cnd->Candidate_Image["name"] == "")
+    if($adm->Admin_Image["name"] == "")
     {
         $er++;
-        $ecandidate_Image = "Required";
+        $eadmin_Image = "Required";
     }
-    if($cnd->Phone_Number == "")
+    if($adm->Phone_Number == "")
     {
         $er++;
         $ephone_Number = "Required";
     }
-    if($cnd->Email == "")
+    if($adm->Email == "")
     {
         $er++;
         $eemail = "Required";
     }
+    if($adm->Work_Institute == "")
+    {
+        $er++;
+        $ework_Institute = "Required";
+    }
+    if($adm->Work_Position == "")
+    {
+        $er++;
+        $ework_Position = "Required";
+    }
 
-    if($cnd->Present_Division_Id == "0")
+
+
+    if($adm->Present_Division_Id == "0")
     {
         $er++;
         $edivision = "Select one";
     }
-    if($cnd->Present_District_Id == "0")
+    if($adm->Present_District_Id == "0")
     {
         $er++;
         $edistrict = "Select one";
     }
-    if($cnd->Present_SubDistrict_Id == "0")
+    if($adm->Present_SubDistrict_Id == "0")
     {
         $er++;
         $esubDistrictd = "Select one";
     }
 
-    if($cnd->Candidate_Party_Symbol["name"] == "")
+
+    if($adm->Password =="")
     {
         $er++;
-        $ecandidate_Party_Symbol = "Required";
+        $epassword = "Required";
     }
-    if($cnd->Candidate_Details_Pdf["name"] == "")
+    if($adm->Re_Password =="")
     {
         $er++;
-        $ecandidate_Details_Pdf = "Required";
+        $ere_Password = "Required";
     }
-
-
+    if($adm->Password != $adm->Re_Password)
+    {
+        $er++;
+        $epassword = "Password not match";
+    }
 
 
 
     if($er == 0)
     {
-        if($cnd->Insert())
+        if($adm->Insert())
         {
-            $sp = $cnd->Nid_Copy['tmp_name'];
-            $dp = 'uploads/candidate/candidate_Nid/'.$cnd->Id."_".$cnd->Nid_Copy['name'];
-            move_uploaded_file($sp, $dp);
-
-            $sp = $cnd->Candidate_Image['tmp_name'];
-            $dp = 'uploads/candidate/candidate_Images/'.$cnd->Id."_".$cnd->Candidate_Image['name'];
-            move_uploaded_file($sp, $dp);
-
-            $sp = $cnd->Candidate_Party_Symbol['tmp_name'];
-            $dp = 'uploads/candidate/candidate_Party_Symbols/'.$cnd->Id."_".$cnd->Candidate_Party_Symbol['name'];
-            move_uploaded_file($sp, $dp);
-
-            $sp = $cnd->Candidate_Details_Pdf['tmp_name'];
-            $dp = 'uploads/candidate/candidate_Details_Pdf/'.$cnd->Id."_".$cnd->Candidate_Details_Pdf['name'];
+            $sp = $adm->Admin_Image['tmp_name'];
+            $dp = 'uploads/admin/admin_Images/'.$adm->Id."_".$adm->Admin_Image['name'];
             move_uploaded_file($sp, $dp);
 
 
 
             $html->successMessage("Data Inserted.");
-            $cnd = new Candidate();
+            $adm = new Admin();
         }
         else
         {
-            $html->errorMessage($cnd->Error);
+            $html->errorMessage($adm->Error);
         }
 
     }
@@ -169,41 +167,47 @@ if(isset($_POST['submit']))
 print '<div>';
     print '<div class="col-sm-6">';
             $html->formBegin("enctype=\"multipart/form-data\"");
-            $html->textField("Name",$cnd->Name,$ename);
-            $html->textField("Father_Name",$cnd->Father_Name,$efather_Name);
-            $html->textField("Mother_Name",$cnd->Mother_Name,$emother_Name);
-            $html->textField("Nid_Number",$cnd->Nid_Number,$enid_Number);
-            $html->fileField("Nid_Copy", $enid_Copy);
-            $html->dateField("Date_Of_Birth",$cnd->Date_Of_Birth,$edate_Of_Birth);
-            $html->radioField("Gender",array("Male", "Female", "Other"),$cnd->Gender,$egender);
+            $html->textField("Name",$adm->Name,$ename);
+            $html->textField("Father_Name",$adm->Father_Name,$efather_Name);
+            $html->textField("Mother_Name",$adm->Mother_Name,$emother_Name);
+            $html->textField("Nid_Number",$adm->Nid_Number,$enid_Number);
+            $html->dateField("Date_Of_Birth",$adm->Date_Of_Birth,$edate_Of_Birth);
+            $html->radioField("Gender",array("Male", "Female", "Other"),$adm->Gender,$egender);
+
             $dvn = new Division();
-            $html->selectField("Permanent_Division_Id",$dvn->Select(),$cnd->Permanent_Division_Id,$edivision);
+            $html->selectField("Permanent_Division_Id",$dvn->Select(),$adm->Permanent_Division_Id,$edivision);
             $dst = new District();
-            $html->selectField("Permanent_District_Id",$dst->Select(),$cnd->Permanent_District_Id,$edistrict);
+            $html->selectField("Permanent_District_Id",$dst->Select(),$adm->Permanent_District_Id,$edistrict);
             $sdt = new Sub_District();
-            $html->selectField("Permanent_SubDistrict_Id",$sdt->Select(),$cnd->Permanent_SubDistrict_Id,$esubDistrictd);
-            $html->textArea("Permanent_Extra_Address",$cnd->Permanent_Extra_Address);
+            $html->selectField("Permanent_SubDistrict_Id",$sdt->Select(),$adm->Permanent_SubDistrict_Id,$esubDistrictd);
+            $html->textArea("Permanent_Extra_Address",$adm->Permanent_Extra_Address);
 
     print '</div>';
 
     print '<div class="col-sm-6">';
-            $html->fileField("Candidate_Image", $ecandidate_Image);
-            $html->textField("Phone_Number",$cnd->Phone_Number,$ephone_Number);
-            $html->textField("Email",$cnd->Email,$eemail);
+            $html->textField("Work_Institute",$adm->Work_Institute,$ework_Institute);
+            $html->textField("Work_Position",$adm->Work_Position,$ework_Position);
+
+            $html->fileField("Admin_Image", $eadmin_Image);
+            $html->textField("Phone_Number",$adm->Phone_Number,$ephone_Number);
+            $html->textField("Email",$adm->Email,$eemail);
 
             $dvn = new Division();
-            $html->selectField("Present_Division_Id",$dvn->Select(),$cnd->Present_Division_Id,$edivision);
+            $html->selectField("Present_Division_Id",$dvn->Select(),$adm->Present_Division_Id,$edivision);
             $dst = new District();
-            $html->selectField("Present_District_Id",$dst->Select(),$cnd->Present_District_Id,$edistrict);
+            $html->selectField("Present_District_Id",$dst->Select(),$adm->Present_District_Id,$edistrict);
             $sdt = new Sub_District();
-            $html->selectField("Present_SubDistrict_Id",$sdt->Select(),$cnd->Present_SubDistrict_Id,$esubDistrictd);
-            $html->textArea("Present_Extra_Address",$cnd->Present_Extra_Address);
+            $html->selectField("Present_SubDistrict_Id",$sdt->Select(),$adm->Present_SubDistrict_Id,$esubDistrictd);
+            $html->textArea("Present_Extra_Address",$adm->Present_Extra_Address);
 
-            $html->fileField("Candidate_Party_Symbol", $ecandidate_Party_Symbol);
-            $html->fileField("Candidate_Details_Pdf", $ecandidate_Details_Pdf);
+            $html->passwordField("Password",$adm->Password,$epassword);
+            $html->passwordField("Re_Password",$adm->Re_Password,$ere_Password);
 
-            $html->submitField();
-            $html->formEnd();
+
+    print '</div>';
+    print '<div class="col-sm-12" style="text-align: center; margin: 20px; font-size: 30px">';
+        $html->submitField();
+        $html->formEnd();
     print '</div>';
 
 

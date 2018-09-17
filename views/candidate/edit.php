@@ -173,44 +173,46 @@ else
 }
 
 print '<div>';
-print '<div class="col-sm-6">';
-$html->formBegin("enctype=\"multipart/form-data\"");
-$html->textField("Name",$cnd->Name,$ename);
-$html->textField("Father_Name",$cnd->Father_Name,$efather_Name);
-$html->textField("Mother_Name",$cnd->Mother_Name,$emother_Name);
-$html->textField("Nid_Number",$cnd->Nid_Number,$enid_Number);
-$html->fileField("Nid_Copy", $enid_Copy);
-$html->dateField("Date_Of_Birth",$cnd->Date_Of_Birth,$edate_Of_Birth);
-$html->radioField("Gender",array("Male", "Female", "Other"),$cnd->Gender,$egender);
-$dvn = new Division();
-$html->selectField("Permanent_Division_Id",$dvn->Select(),$cnd->Permanent_Division_Id,$edivision);
-$dst = new District();
-$html->selectField("Permanent_District_Id",$dst->Select(),$cnd->Permanent_District_Id,$edistrict);
-$sdt = new Sub_District();
-$html->selectField("Permanent_SubDistrict_Id",$sdt->Select(),$cnd->Permanent_SubDistrict_Id,$esubDistrictd);
-$html->textArea("Permanent_Extra_Address",$cnd->Permanent_Extra_Address);
+    print '<div class="col-sm-6">';
+        $html->formBegin("enctype=\"multipart/form-data\"");
+        $html->textField("Name",$cnd->Name,$ename);
+        $html->textField("Father_Name",$cnd->Father_Name,$efather_Name);
+        $html->textField("Mother_Name",$cnd->Mother_Name,$emother_Name);
+        $html->textField("Nid_Number",$cnd->Nid_Number,$enid_Number);
+        $html->fileField("Nid_Copy", $enid_Copy);
+        $html->dateField("Date_Of_Birth",$cnd->Date_Of_Birth,$edate_Of_Birth);
+        $html->radioField("Gender",array("Male", "Female", "Other"),$cnd->Gender,$egender);
+        $dvn = new Division();
+        $html->selectField("Permanent_Division_Id",$dvn->Select(),$cnd->Permanent_Division_Id,$edivision);
+        $dst = new District();
+        $html->selectField("Permanent_District_Id",$dst->Select(),$cnd->Permanent_District_Id,$edistrict);
+        $sdt = new Sub_District();
+        $html->selectField("Permanent_SubDistrict_Id",$sdt->Select(),$cnd->Permanent_SubDistrict_Id,$esubDistrictd);
+        $html->textArea("Permanent_Extra_Address",$cnd->Permanent_Extra_Address);
 
-print '</div>';
+    print '</div>';
 
-print '<div class="col-sm-6">';
-$html->fileField("Candidate_Image", $ecandidate_Image);
-$html->textField("Phone_Number",$cnd->Phone_Number,$ephone_Number);
-$html->textField("Email",$cnd->Email,$eemail);
+    print '<div class="col-sm-6">';
+        $html->fileField("Candidate_Image", $ecandidate_Image);
+        $html->textField("Phone_Number",$cnd->Phone_Number,$ephone_Number);
+        $html->textField("Email",$cnd->Email,$eemail);
 
-$dvn = new Division();
-$html->selectField("Present_Division_Id",$dvn->Select(),$cnd->Present_Division_Id,$edivision);
-$dst = new District();
-$html->selectField("Present_District_Id",$dst->Select(),$cnd->Present_District_Id,$edistrict);
-$sdt = new Sub_District();
-$html->selectField("Present_SubDistrict_Id",$sdt->Select(),$cnd->Present_SubDistrict_Id,$esubDistrictd);
-$html->textArea("Present_Extra_Address",$cnd->Present_Extra_Address);
+        $dvn = new Division();
+        $html->selectField("Present_Division_Id",$dvn->Select(),$cnd->Present_Division_Id,$edivision);
+        $dst = new District();
+        $html->selectField("Present_District_Id",$dst->Select(),$cnd->Present_District_Id,$edistrict);
+        $sdt = new Sub_District();
+        $html->selectField("Present_SubDistrict_Id",$sdt->Select(),$cnd->Present_SubDistrict_Id,$esubDistrictd);
+        $html->textArea("Present_Extra_Address",$cnd->Present_Extra_Address);
 
-$html->fileField("Candidate_Party_Symbol", $ecandidate_Party_Symbol);
-$html->fileField("Candidate_Details_Pdf", $ecandidate_Details_Pdf);
+        $html->fileField("Candidate_Party_Symbol", $ecandidate_Party_Symbol);
+        $html->fileField("Candidate_Details_Pdf", $ecandidate_Details_Pdf);
 
-$html->submitField();
-$html->formEnd();
-print '</div>';
+    print '</div>';
+    print '<div class="col-sm-12" style="text-align: center; margin: 20px; font-size: 30px">';
+        $html->submitField();
+        $html->formEnd();
+    print '</div>';
 
 
 print '</div>';

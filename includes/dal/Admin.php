@@ -13,7 +13,6 @@ class Admin extends Base
     public $Father_Name;
     public $Mother_Name;
     public $Nid_Number;
-    public $Nid_Copy;
     public $Date_Of_Birth;
     public $Gender;
 
@@ -27,24 +26,28 @@ class Admin extends Base
     public $Permanent_SubDistrict_Id;
     public $Permanent_Extra_Address;
 
-    public $Candidate_Image;
+    public $Work_Institute;
+    public $Work_Position;
+
+    public $Admin_Image;
     public $Phone_Number;
     public $Email;
-    public $Candidate_Party_Symbol;
-    public $Candidate_Details_Pdf;
+    public $Password;
+    public $Re_Password;
+    public $Fingerprint;
+
 
 
     public function Insert()
     {
-        $sql = "insert into candidate (name,fatherName,motherName,nidNumber,nidCopy,dateOfBirth,gender,presentDivisionId,presentDistrictId,
-presentSubDistrictId,presentExtraAddress,permanentDivisionId,permanentDistrictId,permanentSubDistrictId,permanentExtraAddress,canImage,
-phoneNumber,email,canPartySymbol,canDetailsPdf,createDate,createIp
-) values(
+        $sql = "insert into admin (name,fatherName,motherName,nidNumber,dateOfBirth,gender,presentDivisionId,presentDistrictId,
+                presentSubDistrictId,presentExtraAddress,permanentDivisionId,permanentDistrictId,permanentSubDistrictId,permanentExtraAddress,
+                workInstitute,workPosition,adminImage,phoneNumber,email,password,fingerprint,createDate,createIp
+                ) values(
                 '".$this->MS($this->Name)."',
                 '".$this->MS($this->Father_Name)."',
                 '".$this->MS($this->Mother_Name)."',
                 '".$this->MS($this->Nid_Number)."',
-                '".$this->MS($this->Nid_Copy["name"])."',
                 '".$this->MS($this->Date_Of_Birth)."',
                 '".$this->MS($this->Gender)."',
                 
@@ -58,11 +61,14 @@ phoneNumber,email,canPartySymbol,canDetailsPdf,createDate,createIp
                 ".$this->MS($this->Permanent_SubDistrict_Id).",
                 '".$this->MS($this->Permanent_Extra_Address)."',
                 
-                '".$this->MS($this->Candidate_Image["name"])."',
+                '".$this->MS($this->Work_Institute)."',
+                '".$this->MS($this->Work_Position)."',
+                
+                '".$this->MS($this->Admin_Image["name"])."',
                 '".$this->MS($this->Phone_Number)."',
                 '".$this->MS($this->Email)."',
-                '".$this->MS($this->Candidate_Party_Symbol["name"])."',
-                '".$this->MS($this->Candidate_Details_Pdf["name"])."',
+                password('".$this->MS($this->Password)."'),
+                '".$this->MS($this->Fingerprint)."',
                 
                 '".date("Y-m-d")."',
                 '".$_SERVER['REMOTE_ADDR']."'		
@@ -249,17 +255,6 @@ phoneNumber,email,canPartySymbol,canDetailsPdf from candidate where id = ".$this
         }
         $this->Error = mysqli_error($this->CN);
         return false;
-    }
-    public function SelectName()
-    {
-        $a = array();
-        $sql = "select id, name from candidate";
-        $table = mysqli_query($this->CN,$sql);
-        while($row = mysqli_fetch_assoc($table))
-        {
-            $a[]= $row;
-        }
-        return $a;
     }
 }
 ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 17, 2018 at 06:43 AM
+-- Generation Time: Sep 17, 2018 at 06:20 PM
 -- Server version: 5.7.21
 -- PHP Version: 7.2.4
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `motherName` varchar(200) DEFAULT NULL,
   `nidNumber` varchar(50) DEFAULT NULL,
   `dateOfBirth` date DEFAULT NULL,
-  `gender` int(11) DEFAULT NULL,
+  `gender` varchar(10) DEFAULT NULL,
   `presentDivisionId` int(11) DEFAULT NULL,
   `presentDistrictId` int(11) DEFAULT NULL,
   `presentSubDistrictId` int(11) DEFAULT NULL,
@@ -64,7 +64,14 @@ CREATE TABLE IF NOT EXISTS `admin` (
   KEY `permanentDivisionId` (`permanentDivisionId`),
   KEY `permanentDistrictId` (`permanentDistrictId`),
   KEY `permanentSubDistrictId` (`permanentSubDistrictId`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `name`, `fatherName`, `motherName`, `nidNumber`, `dateOfBirth`, `gender`, `presentDivisionId`, `presentDistrictId`, `presentSubDistrictId`, `presentExtraAddress`, `permanentDivisionId`, `permanentDistrictId`, `permanentSubDistrictId`, `permanentExtraAddress`, `workInstitute`, `workPosition`, `adminImage`, `phoneNumber`, `email`, `password`, `fingerprint`, `createDate`, `createIp`) VALUES
+(1, 'Sohrab Hossain', 'Adbul Ahad', 'Jesmin Akter', '42783728394', '1994-02-03', 'Male', 1, 1, 4, 'na', 5, 37, 307, 'NA', 'NA', 'NA', 'FormalPic01.jpg', '01722968534', 'sohrab.zaf8888@gmail.com', '*00A51F3F48415C7D4E8908980D443C29C69B60C9', '', '2018-09-17', '::1');
 
 -- --------------------------------------------------------
 
@@ -81,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `candidate` (
   `nidNumber` varchar(50) DEFAULT NULL,
   `nidCopy` varchar(300) DEFAULT NULL,
   `dateOfBirth` date DEFAULT NULL,
-  `gender` int(11) DEFAULT NULL,
+  `gender` varchar(10) DEFAULT NULL,
   `presentDivisionId` int(11) DEFAULT NULL,
   `presentDistrictId` int(11) DEFAULT NULL,
   `presentSubDistrictId` int(11) DEFAULT NULL,
@@ -862,7 +869,7 @@ CREATE TABLE IF NOT EXISTS `voter` (
   `motherName` varchar(200) DEFAULT NULL,
   `nidNumber` varchar(50) DEFAULT NULL,
   `dateOfBirth` date DEFAULT NULL,
-  `gender` int(11) DEFAULT NULL,
+  `gender` varchar(10) DEFAULT NULL,
   `presentDivisionId` int(11) DEFAULT NULL,
   `presentDistrictId` int(11) DEFAULT NULL,
   `presentSubDistrictId` int(11) DEFAULT NULL,

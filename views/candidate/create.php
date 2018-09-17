@@ -202,8 +202,10 @@ print '<div>';
             $html->fileField("Candidate_Party_Symbol", $ecandidate_Party_Symbol);
             $html->fileField("Candidate_Details_Pdf", $ecandidate_Details_Pdf);
 
-            $html->submitField();
-            $html->formEnd();
+    print '</div>';
+    print '<div class="col-sm-12" style="text-align: center; margin: 20px; font-size: 30px">';
+        $html->submitField();
+        $html->formEnd();
     print '</div>';
 
 

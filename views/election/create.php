@@ -113,6 +113,8 @@ print '<div>';
     print '<div class="col-sm-4">';
         $cnd = new Candidate();
         $html->selectField("Candidate_Id_3",$cnd->SelectName(),$elc->Candidate_Id_3,$ecandidate_Id_3);
+    print '</div>';
+    print '<div class="col-sm-12" style="text-align: center; margin: 20px; font-size: 30px">';
         $html->submitField();
         $html->formEnd();
     print '</div>';

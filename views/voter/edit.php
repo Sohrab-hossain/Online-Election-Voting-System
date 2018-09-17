@@ -190,6 +190,8 @@ print '<div>';
         $html->passwordField("Password",$vtr->Password,$epassword);
         $html->passwordField("Re_Password",$vtr->Re_Password,$ere_Password);
 
+    print '</div>';
+    print '<div class="col-sm-12" style="text-align: center; margin: 20px; font-size: 30px">';
         $html->submitField();
         $html->formEnd();
     print '</div>';

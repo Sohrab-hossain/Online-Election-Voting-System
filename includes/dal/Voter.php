@@ -52,7 +52,7 @@ class Voter extends Base
                 '".$this->MS($this->Voter_Image["name"])."',
                 '".$this->MS($this->Phone_Number)."',
                 '".$this->MS($this->Email)."',
-                '".$this->MS($this->Password)."',
+                password('".$this->MS($this->Password)."'),
                 '".$this->MS($this->Fingerprint)."',
                 
                 '".date("Y-m-d")."',

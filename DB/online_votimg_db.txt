@@ -38,7 +38,7 @@ create table voter
     motherName varchar (200),
     nidNumber varchar (50) unique,
     dateOfBirth date,
-    gender int,
+    gender varchar (10),
 
     presentDivisionId int,
     presentDistrictId int,
@@ -76,7 +76,7 @@ create table admin
     motherName varchar (200),
     nidNumber varchar (50) unique,
     dateOfBirth date,
-    gender int,
+    gender varchar (10),
 
     presentDivisionId int,
     presentDistrictId int,
@@ -118,7 +118,7 @@ create table candidate
     nidNumber varchar (50) unique,
     nidCopy varchar (300),
     dateOfBirth date,
-    gender int,
+    gender varchar (10),
 
     presentDivisionId int,
     presentDistrictId int,

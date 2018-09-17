@@ -44,6 +44,14 @@ class HTML
 		<span class=\"error\" id=\"e$name\">$error</span>\n
 		</div>\n";
     }
+        public function timeField($name, $value, $error = "")
+    {
+        print "<div class=\"form-group\">\n
+		<label>".ucwords($name)."</label>\n
+		<input type=\"time\" name=\"$name\" id=\"$name\" class=\"form-control\" value=\"$value\"/>\n
+		<span class=\"error\" id=\"e$name\">$error</span>\n
+		</div>\n";
+    }
 
     public function fileField($name, $error = "")
     {

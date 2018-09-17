@@ -1,0 +1,78 @@
+.timing
+{
+    background-color: #9acfea;
+    border-bottom: 1px solid red;
+    margin: 10px;
+    padding: 0px;
+}
+.timing p
+{
+    font-size: 20px;
+    text-align: center;
+    color: #050e9d;
+    background-color: white;
+}
+.votingField
+{
+    width: 700px;
+    height: 190px;
+    margin-left: 170px;
+    border-style:ridge ;
+    border-width:2px ;
+    background-color: #9acfea;
+}
+.votingField div
+{
+    float: left;
+    margin: 20px;
+    padding: 10px;
+
+}
+
+.candidateName
+{
+    font-size: 18px;
+    width: 250px;
+    height: 100px;
+    border-style:ridge ;
+    border-width:1px ;
+}
+.candidateName input
+{
+    width: 25px;
+    height: 45px;
+    border-style: ridge;
+    border-color: red;
+    border-width: 2px;
+
+}
+.candidatePartySymbol
+{
+    width: 100px;
+    height: 100px;
+    border-style:ridge ;
+    border-width:1px ;
+}
+.candidateInfo
+{
+    width: 200px;
+    height: 150px;
+    border-style:ridge ;
+    border-width:1px ;
+}
+.candidateInfo span img
+{
+    width: 100px;
+    height: 100px;
+    margin-left: 37px;
+    margin-bottom: 2px;
+
+}
+.candidateInfo p
+{
+    width: auto;
+    height: 30px;
+    text-align: center;
+    border-style:ridge ;
+    border-width:1px ;
+}

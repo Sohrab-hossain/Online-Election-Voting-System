@@ -3,6 +3,7 @@
 function loadCSS()
 {
     print '<link type="text/css" rel="stylesheet" href="css/myCSS/adminLayout.css" />';
+    print '<link type="text/css" rel="stylesheet" href="css/myCSS/voting.css" />';
     print '<link type="text/css" rel="stylesheet" href="css/bootstrap.css" />';
     print '<link type="text/css" rel="stylesheet" href="fontawesome/css/all.css" />';
 

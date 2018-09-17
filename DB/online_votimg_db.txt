@@ -15,7 +15,9 @@ create table subDistrict
 (
     id int auto_increment primary key,
     name varchar (200),
+    divisionId int,
     districtId int,
+    foreign key (divisionId) references division(id),
     foreign key (districtId) references district(id)
 )
 
@@ -37,23 +39,33 @@ create table voter
     nidNumber varchar (50) unique,
     dateOfBirth date,
     gender int,
+
     presentDivisionId int,
     presentDistrictId int,
     presentSubDistrictId int,
     presentExtraAddress varchar (300),
+
     permanentDivisionId int,
     permanentDistrictId int,
     permanentSubDistrictId int,
     permanentExtraAddress varchar (300),
-    contact varchar (50) unique,
+
+    voterImage varchar (300),
+    phoneNumber varchar (50) unique,
     email varchar (50) unique,
-    password varchar (500),
-    fingerprint varchar (500),  
+    password varchar (200),
+    fingerprint varchar (300),
+  
     createDate date,
     createIp varchar (200),
+
     foreign key (presentDivisionId) references division(id),
     foreign key (presentDistrictId) references district(id),
-    foreign key (presentSubDistrictId) references subDistrict(id)
+    foreign key (presentSubDistrictId) references subDistrict(id),
+
+    foreign key (permanentDivisionId) references division(id),
+    foreign key (permanentDistrictId) references district(id),
+    foreign key (permanentSubDistrictId) references subDistrict(id)
 )
 
 create table admin
@@ -65,25 +77,36 @@ create table admin
     nidNumber varchar (50) unique,
     dateOfBirth date,
     gender int,
+
     presentDivisionId int,
     presentDistrictId int,
     presentSubDistrictId int,
     presentExtraAddress varchar (300),
+
     permanentDivisionId int,
     permanentDistrictId int,
     permanentSubDistrictId int,
     permanentExtraAddress varchar (300),
+
     workInstitute varchar (200),
     workPosition varchar (200),
-    contact varchar (50) unique,
+
+    adminImage varchar (300),
+    phoneNumber varchar (50) unique,
     email varchar (50) unique,
-    password varchar (500),
-    fingerprint varchar (500),  
+    password varchar (200),
+    fingerprint varchar (300),  
+
     createDate date,
     createIp varchar (200),
+
     foreign key (presentDivisionId) references division(id),
     foreign key (presentDistrictId) references district(id),
-    foreign key (presentSubDistrictId) references subDistrict(id)
+    foreign key (presentSubDistrictId) references subDistrict(id),
+
+    foreign key (permanentDivisionId) references division(id),
+    foreign key (permanentDistrictId) references district(id),
+    foreign key (permanentSubDistrictId) references subDistrict(id)
 )
 
 create table candidate
@@ -93,7 +116,7 @@ create table candidate
     fatherName varchar (200),
     motherName varchar (200),
     nidNumber varchar (50) unique,
-    nidCopy varchar (500),
+    nidCopy varchar (300),
     dateOfBirth date,
     gender int,
 
@@ -101,27 +124,61 @@ create table candidate
     presentDistrictId int,
     presentSubDistrictId int,
     presentExtraAddress varchar (300),
+
     permanentDivisionId int,
     permanentDistrictId int,
     permanentSubDistrictId int,
-
     permanentExtraAddress varchar (300),
-    contact varchar (50) unique,
+
+    canImage varchar (500),
+    phoneNumber varchar (50) unique,
     email varchar (50) unique,
-    canPartySymbol varchar (500),
-    canDetailsPdf varchar (500),
+    canPartySymbol varchar (300),
+    canDetailsPdf varchar (300),
+
     createDate date,
     createIp varchar (200),
+
     foreign key (presentDivisionId) references division(id),
     foreign key (presentDistrictId) references district(id),
-    foreign key (presentSubDistrictId) references subDistrict(id)
+    foreign key (presentSubDistrictId) references subDistrict(id),
+
+    foreign key (permanentDivisionId) references division(id),
+    foreign key (permanentDistrictId) references district(id),
+    foreign key (permanentSubDistrictId) references subDistrict(id)
+)
+create table election
+(
+    id int auto_increment primary key,
+    districtId int,
+    startTime time,
+    endTime time,
+
+    candidateId1 int,
+    candidateId2 int,
+    candidateId3 int,
+    candidateId4 int,
+    candidateId5 int,
+
+    createDate date,
+
+    foreign key (districtId) references district(id),
+
+    foreign key (candidateId1) references candidate (id),
+    foreign key (candidateId2) references candidate (id),
+    foreign key (candidateId3) references candidate (id),
+    foreign key (candidateId4) references candidate (id),
+    foreign key (candidateId5) references candidate (id)
 )
 
 create table result
 (
-    candidateId int primary key,
-    totalVote int,
-    foreign key (candidateId) references candidate (id)
+    voterId int primary key,
+    candidateId int,
+    votingTime time,
+    createIp varchar (200),
+    foreign key (candidateId) references candidate (id),
+    foreign key (voterId) references voter (id)
 )
 
 

@@ -169,11 +169,8 @@ phoneNumber,email,canPartySymbol,canDetailsPdf,createDate,createIp
 
             print '<td class="candidate_info">'.
                 'Symbol:<img src="uploads/candidate/candidate_Images/'.$row["id"].'_'.$row["canPartySymbol"].'"/><br/>'.
-                "NID Copy: ".htmlentities($row["nidCopy"])."<br/>".
                 "NID Copy: ".'<a href=\"uploads/candidate/candidate_Nid/\'.$row["id"].\'.\'_\'.$row["nidCopy"]\">Download</a><br/>';
                 "Candidate Details Pdf: ".htmlentities($row["canDetailsPdf"])
-
-                
 
                 .'</td>';
 

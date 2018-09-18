@@ -89,13 +89,12 @@ class Admin extends Base
 
     public function Update()
     {
-        $sql = "update candidate set
+        $sql = "update admin set
 
                 name = '".$this->MS($this->Name)."',
                 fatherName = '".$this->MS($this->Father_Name)."',
                 motherName = '".$this->MS($this->Mother_Name)."',
                 nidNumber = '".$this->MS($this->Nid_Number)."',
-                nidCopy =  '".$this->MS($this->Nid_Copy["name"])."',
                 dateOfBirth = '".$this->MS($this->Date_Of_Birth)."',
                 gender =  '".$this->MS($this->Gender)."',
                 
@@ -109,12 +108,15 @@ class Admin extends Base
                 permanentSubDistrictId =  ".$this->MS($this->Permanent_SubDistrict_Id).",
                 permanentExtraAddress = '".$this->MS($this->Permanent_Extra_Address)."',
                 
-                canImage = '".$this->MS($this->Candidate_Image["name"])."',
+                workInstitute = '".$this->MS($this->Work_Institute)."',
+                workPosition = '".$this->MS($this->Work_Position)."',
+                
+                adminImage = '".$this->MS($this->Admin_Image["name"])."',
                 phoneNumber =  '".$this->MS($this->Phone_Number)."',
                 email = '".$this->MS($this->Email)."',
-                canPartySymbol = '".$this->MS($this->Candidate_Party_Symbol["name"])."',
-                canDetailsPdf =  '".$this->MS($this->Candidate_Details_Pdf["name"])."' 
-        
+                password = password('".$this->MS($this->Password)."'),
+                fingerprint = '".$this->MS($this->Fingerprint)."'
+                        
          where id = ".$this->MS($this->Id);
         if(mysqli_query($this->CN,$sql))
         {
@@ -129,7 +131,7 @@ class Admin extends Base
 
     public function Delete()
     {
-        $sql = "delete from candidate where id = ".$this->MS($this->Id);
+        $sql = "delete from admin where id = ".$this->MS($this->Id);
         if(mysqli_query($this->CN,$sql))
         {
             return true;
@@ -143,54 +145,49 @@ class Admin extends Base
 
     public function Select()
     {
-        $sql = "select cnd.id,cnd.name,cnd.fatherName,cnd.motherName,cnd.nidNumber,cnd.nidCopy,cnd.dateOfBirth,cnd.gender,
+        $sql = "select adm.id,adm.name,adm.fatherName,adm.motherName,adm.nidNumber,adm.dateOfBirth,adm.gender,
+
                 dvn.name as present_division,dst.name as present_district,sdt.name as present_SubDistrict,
-                cnd.presentExtraAddress,dvn.name as permanent_division,dst.name as permanent_district,
-                sdt.name as permanent_SubDistrict,cnd.permanentExtraAddress,cnd.canImage,cnd.phoneNumber,cnd.email,
-                cnd.canPartySymbol,cnd.canDetailsPdf,cnd.createDate,cnd.createIp from candidate as cnd
-                left join division as dvn on cnd.presentDivisionId=dvn.id
-                and cnd.permanentDivisionId=dvn.id      
                 
-                left join district as dst on cnd.presentDistrictId=dst.id
-                and cnd.permanentDistrictId=dst.id       
+                adm.presentExtraAddress,
+                dvn.name as permanent_division,dst.name as permanent_district,sdt.name as permanent_SubDistrict,
+                adm.permanentExtraAddress,
+                adm.workInstitute,adm.workPosition,adm.adminImage,adm.phoneNumber,adm.email,
+                adm.createDate,adm.createIp from admin as adm
                 
-                left join subdistrict as sdt on cnd.presentSubDistrictId=sdt.id
-                and cnd.permanentSubDistrictId=sdt.id";
+                left join division as dvn on adm.presentDivisionId=dvn.id
+                and adm.permanentDivisionId=dvn.id      
+                
+                left join district as dst on adm.presentDistrictId=dst.id
+                and adm.permanentDistrictId=dst.id       
+                
+                left join subdistrict as sdt on adm.presentSubDistrictId=sdt.id
+                and adm.permanentSubDistrictId=sdt.id";
 
         $table = mysqli_query($this->CN,$sql);
         print '<table class="table table-striped">';
-        print '<tr><th>Basic Info</th><th>Other Info</th><th>Candidate</th></th><th>Present Address</th><th>Permanent Address</th><th>Security Info</th><th>Edit | Delete</th></tr>';
+        print '<tr><th>Basic Info</th><th>Admin</th><th>Present Address</th><th>Permanent Address</th><th>Security Info</th><th>Edit | Delete</th></tr>';
         while($row = mysqli_fetch_assoc($table))
         {
-            print '<tr>';
+            print '<tr style="border: 2px dotted red; margin-bottom: 2px;">';
             print '<td class="basic_info">'.
                 "Id: ".htmlentities($row["id"])."<br/>".
                 "Name: ".htmlentities($row["name"])."<br/>".
                 "Father Name: ".htmlentities($row["fatherName"])."<br/>".
                 "Mother Name: ".htmlentities($row["motherName"])."<br/>".
+                "Date Of Birth: ".htmlentities($row["dateOfBirth"])."<br/>".
+                "Gender: ".htmlentities($row["gender"])."<br/>".
                 "Phone Number: ".htmlentities($row["phoneNumber"])."<br/>".
                 "Email: ".htmlentities($row["email"])
                 .'</td>';
 
-            print '<td class="other_info">'.
-                '<img src="uploads/candidate/candidate_Images/'.$row["id"].'_'.$row["canImage"].'"/><br/>'.
+            print '<td class="admin_info">'.
+                '<img src="uploads/admin/admin_Images/'.$row["id"].'_'.$row["adminImage"].'"/><br/>'.
+                "Name: ".htmlentities($row["name"])."<br/>".
                 "NID Number: ".htmlentities($row["nidNumber"])."<br/>".
-                "Date Of Birth: ".htmlentities($row["dateOfBirth"])."<br/>".
-                "Gender: ".htmlentities($row["gender"])
+                "Work Institute: ".htmlentities($row["workInstitute"])."<br/>".
+                "Work Position: ".htmlentities($row["workPosition"])
                 .'</td>';
-
-            print '<td class="candidate_info">'.
-                'Symbol:<img src="uploads/candidate/candidate_Images/'.$row["id"].'_'.$row["canPartySymbol"].'"/><br/>'.
-                "NID Copy: ".htmlentities($row["nidCopy"])."<br/>".
-                "NID Copy: ".'<a href=\"uploads/candidate/candidate_Nid/\'.$row["id"].\'.\'_\'.$row["nidCopy"]\">Download</a><br/>';
-            "Candidate Details Pdf: ".htmlentities($row["canDetailsPdf"])
-
-
-
-            .'</td>';
-
-
-
 
             print '<td class="pre_address_info">'.
                 "Division : ".htmlentities($row["present_division"])."<br/>".
@@ -221,9 +218,9 @@ class Admin extends Base
 
     public function SelectById()
     {
-        $sql = "select id, name,fatherName,motherName,nidNumber,nidCopy,dateOfBirth,gender,presentDivisionId,presentDistrictId,
-presentSubDistrictId,presentExtraAddress,permanentDivisionId,permanentDistrictId,permanentSubDistrictId,permanentExtraAddress,canImage,
-phoneNumber,email,canPartySymbol,canDetailsPdf from candidate where id = ".$this->MS($this->Id);
+        $sql = "select id, name,fatherName,motherName,nidNumber,dateOfBirth,gender,presentDivisionId,presentDistrictId,
+                presentSubDistrictId,presentExtraAddress,permanentDivisionId,permanentDistrictId,permanentSubDistrictId,permanentExtraAddress,
+                workInstitute,workPosition,adminImage,phoneNumber,email,password,fingerprint from admin where id = ".$this->MS($this->Id);
         $table = (mysqli_query($this->CN,$sql));
         while($row = mysqli_fetch_assoc($table))
         {
@@ -231,7 +228,6 @@ phoneNumber,email,canPartySymbol,canDetailsPdf from candidate where id = ".$this
             $this->Father_Name = $row["fatherName"];
             $this->Mother_Name = $row["motherName"];
             $this->Nid_Number = $row["nidNumber"];
-            $this->Nid_Copy = $row["nidCopy"];
             $this->Date_Of_Birth = $row["dateOfBirth"];
             $this->Gender = $row["gender"];
 
@@ -245,11 +241,13 @@ phoneNumber,email,canPartySymbol,canDetailsPdf from candidate where id = ".$this
             $this->Permanent_SubDistrict_Id = $row["permanentSubDistrictId"];
             $this->Permanent_Extra_Address = $row["permanentExtraAddress"];
 
-            $this->Candidate_Image = $row["canImage"];
+            $this->Work_Institute = $row["workInstitute"];
+            $this->Work_Position = $row["workPosition"];
+            $this->Admin_Image = $row["adminImage"];
             $this->Phone_Number = $row["phoneNumber"];
             $this->Email = $row["email"];
-            $this->Candidate_Party_Symbol = $row["canPartySymbol"];
-            $this->Candidate_Details_Pdf = $row["canDetailsPdf"];
+            $this->Password = $row["password"];
+            $this->Fingerprint = $row["fingerprint"];
 
             return true;
         }

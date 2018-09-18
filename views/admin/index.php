@@ -8,6 +8,6 @@ if(isset($_GET['id']))
     commonDelete($adm);
 }
 
-
+$adm->Select();
 
 ?>

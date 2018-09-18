@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+$adminController = array("admin","candidate", "district", "division", "sub_district", "election", "voter");
+
 include('includes/library.php');
 $html = new HTML();
 $title = "Online Election and Voting";
@@ -48,5 +51,11 @@ function loadUserData($obj)
     return $obj;
 }
 include('includes/clientScript.php');
+include('includes/loginout.php');
+
+
+
+
+
 require('views/shared/adminLayout.php');
 ?>

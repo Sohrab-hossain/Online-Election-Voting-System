@@ -10,7 +10,7 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavber">
             <div class="container">
-                <?php require('views/shared/menu/adminMenu.php');?>
+                <?php require('views/shared/menu/_adminMenu.php');?>
             </div>
         </div>
 

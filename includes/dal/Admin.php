@@ -35,6 +35,7 @@ class Admin extends Base
     public $Password;
     public $Re_Password;
     public $Fingerprint;
+    public $Type;
 
 
 
@@ -220,7 +221,7 @@ class Admin extends Base
     {
         $sql = "select id, name,fatherName,motherName,nidNumber,dateOfBirth,gender,presentDivisionId,presentDistrictId,
                 presentSubDistrictId,presentExtraAddress,permanentDivisionId,permanentDistrictId,permanentSubDistrictId,permanentExtraAddress,
-                workInstitute,workPosition,adminImage,phoneNumber,email,password,fingerprint from admin where id = ".$this->MS($this->Id);
+                workInstitute,workPosition,adminImage,phoneNumber,email,password,fingerprint,type from admin where id = ".$this->MS($this->Id);
         $table = (mysqli_query($this->CN,$sql));
         while($row = mysqli_fetch_assoc($table))
         {
@@ -248,6 +249,36 @@ class Admin extends Base
             $this->Email = $row["email"];
             $this->Password = $row["password"];
             $this->Fingerprint = $row["fingerprint"];
+            $this->Type = $row["type"];
+
+            return true;
+        }
+        $this->Error = mysqli_error($this->CN);
+        return false;
+    }
+
+    public function Login()
+    {
+        $sql = "select id, name,fatherName,motherName,nidNumber,dateOfBirth,gender,workInstitute,workPosition,
+                adminImage,phoneNumber,email,password,fingerprint,type from admin 
+                where email = '".$this->MS($this->Email)."' and nidNumber = '".$this->MS($this->Nid_Number)."'
+                and password = password('".$this->Password."')";
+        $table = (mysqli_query($this->CN,$sql));
+        while($row = mysqli_fetch_assoc($table))
+        {
+            $this->Name = $row["name"];
+            $this->Father_Name = $row["fatherName"];
+            $this->Mother_Name = $row["motherName"];
+            $this->Nid_Number = $row["nidNumber"];
+            $this->Date_Of_Birth = $row["dateOfBirth"];
+            $this->Gender = $row["gender"];
+
+            $this->Work_Institute = $row["workInstitute"];
+            $this->Work_Position = $row["workPosition"];
+            $this->Admin_Image = $row["adminImage"];
+            $this->Phone_Number = $row["phoneNumber"];
+            $this->Email = $row["email"];
+            $this->Type = $row["type"];
 
             return true;
         }

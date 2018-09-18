@@ -1,0 +1,1 @@
+<span class="alert-success">Log out was successfull</span>

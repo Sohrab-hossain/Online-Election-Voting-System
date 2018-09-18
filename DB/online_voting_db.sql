@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 17, 2018 at 06:20 PM
+-- Generation Time: Sep 18, 2018 at 07:00 PM
 -- Server version: 5.7.21
 -- PHP Version: 7.2.4
 
@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `fingerprint` varchar(300) DEFAULT NULL,
   `createDate` date DEFAULT NULL,
   `createIp` varchar(200) DEFAULT NULL,
+  `type` varchar(10) NOT NULL DEFAULT 'UA',
   PRIMARY KEY (`id`),
   UNIQUE KEY `nidNumber` (`nidNumber`),
   UNIQUE KEY `phoneNumber` (`phoneNumber`),
@@ -64,14 +65,15 @@ CREATE TABLE IF NOT EXISTS `admin` (
   KEY `permanentDivisionId` (`permanentDivisionId`),
   KEY `permanentDistrictId` (`permanentDistrictId`),
   KEY `permanentSubDistrictId` (`permanentSubDistrictId`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id`, `name`, `fatherName`, `motherName`, `nidNumber`, `dateOfBirth`, `gender`, `presentDivisionId`, `presentDistrictId`, `presentSubDistrictId`, `presentExtraAddress`, `permanentDivisionId`, `permanentDistrictId`, `permanentSubDistrictId`, `permanentExtraAddress`, `workInstitute`, `workPosition`, `adminImage`, `phoneNumber`, `email`, `password`, `fingerprint`, `createDate`, `createIp`) VALUES
-(1, 'Sohrab Hossain', 'Adbul Ahad', 'Jesmin Akter', '42783728394', '1994-02-03', 'Male', 1, 1, 4, 'na', 5, 37, 307, 'NA', 'NA', 'NA', 'FormalPic01.jpg', '01722968534', 'sohrab.zaf8888@gmail.com', '*00A51F3F48415C7D4E8908980D443C29C69B60C9', '', '2018-09-17', '::1');
+INSERT INTO `admin` (`id`, `name`, `fatherName`, `motherName`, `nidNumber`, `dateOfBirth`, `gender`, `presentDivisionId`, `presentDistrictId`, `presentSubDistrictId`, `presentExtraAddress`, `permanentDivisionId`, `permanentDistrictId`, `permanentSubDistrictId`, `permanentExtraAddress`, `workInstitute`, `workPosition`, `adminImage`, `phoneNumber`, `email`, `password`, `fingerprint`, `createDate`, `createIp`, `type`) VALUES
+(1, 'Sohrab Hossain', 'Adbul Ahad', 'Jesmin Akter', '42783728394', '1994-02-03', 'Male', 1, 1, 4, 'na', 5, 37, 307, 'NA', 'NA', 'NA', 'FormalPic01.jpg', '01722968534', 'sohrab.zaf8888@gmail.com', '*00A51F3F48415C7D4E8908980D443C29C69B60C9', '', '2018-09-17', '::1', 'SA'),
+(2, 'S.H.Zafran', 'Abdul Ahad', 'Jesmin Akter', '478273182481', '1995-02-03', 'Male', 1, 1, 4, 'NA', 1, 1, 4, 'NA', 'NA', 'NA', 'IMG_20180711_203222.jpg', '01914938888', 's.h56789@yahoo.com', '*6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9', '', '2018-09-18', '::1', 'UA');
 
 -- --------------------------------------------------------
 

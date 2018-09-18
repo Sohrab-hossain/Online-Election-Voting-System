@@ -12,14 +12,12 @@
 <body>
 <div class="myHeader">
     <?php //require('views/shared/header/adminHeader.php');?>
-    <?php include('views/shared/menu/adminMenu.php');?>
+    <?php include('views/shared/menu/_adminMenu.php');?>
 </div>
 <div class="container content">
-        <?php
-        print '<h2><a href="?controller='.$controller.'">'.ucwords($controller).'</a> | <i>'.ucwords($view).'</i></h2>';
-        include('views/'.$controller.'/'.$view.".php");
-        //require('views/'.$controller.'/'.$view.".php");
-        ?>
+    <?php
+        include ('includes/controller.php');
+    ?>
 </div>
 <div class="myFooter">
     <?php include('views/shared/footer/adminFooter.php');?>
